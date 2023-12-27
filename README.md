@@ -4,7 +4,7 @@
 
 ## 体验地址
 
-[自绘记录]("https://demo.gfish.top")
+[体验地址](https://demo.gfish.top) 
 
 ## 功能列表
 
@@ -76,7 +76,7 @@ services:
       - "8081:80"
 
   gfishApi:
-    image: cwwll06234/luanqibazaoces:main
+    image: gfishauth/auth_free:latest
     container_name: gfish-api
     ports:
       - "7099:7099"
@@ -162,7 +162,7 @@ services:
   # 服务名称，替换成你的实际服务名称
   gfishApi:
     # Docker镜像名称和标签，替换成你的实际镜像名称和标签
-    image: cwwll06234/luanqibazaoces:main
+    image: gfishauth/auth_free:latest
     # 容器名称，替换成你的实际容器名称
     container_name: gfish-api
     # 端口映射，根据需要进行调整
