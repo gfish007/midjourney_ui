@@ -4,7 +4,7 @@
 
 ## 体验地址
 
-[自绘记录]("https://demo.gfish.top")
+[体验地址](https://demo.gfish.top) 
 
 ## 功能列表
 
