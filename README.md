@@ -53,9 +53,10 @@
 ### 前置环境准备
 
 * [ ]  一个"墙外"VPS
-* [ ]  Pandora-next搭建（免费的Chatgpt逆向）
+* [ ]  Pandora-next搭建（免费的Chatgpt逆向，[项目地址](https://github.com/pandora-next/deploy))）
 * [ ]  Redis
 * [ ]  Mysql 8.0
+* [ ]  根目录初始化sql执行
 
 ### 前后端一键部署
 
@@ -214,7 +215,7 @@ services:
 
 #### 自定义菜单
 
-当前未开发菜单集成页面，如果需要请至 `Mysql` 的 `sys_menu` 表修添加相关配置页面。
+当前未开发菜单集成页面，如果需要请至 `Mysql` 的 `sys_menu` 表添加相关配置页面。
 
 #### 扩展功能配置
 
