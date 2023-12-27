@@ -204,6 +204,24 @@ services:
       retries: 3
 ```
 
+### 基础配置相关
+
+#### 默认账号配置
+
+> **管理员账号**：admin
+>
+> **管理员密码**：admin123456
+
+#### 自定义菜单
+
+当前未开发菜单集成页面，如果需要请至 `Mysql` 的 `sys_menu` 表修添加相关配置页面。
+
+#### 扩展功能配置
+
+当前未开发页面，请至 `Mysql` 的 `df_dict` 表修改相关值
+
+<img src="./assets/config.png" alt="数据库常量配置" width="100%">
+
 ## 免费版本限制说明（暂定限制如下，具体数值待定）
 
 - 只开放 single 模式（单机直跑）
@@ -234,17 +252,7 @@ services:
 
 ### 移动端：
 
-<img src="./assets/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20231227110649.jpg" alt="_20231227110649.jpg" width="50%">
-
-<img src="./assets/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20231227110715.jpg" alt="_20231227110715.jpg" width="50%">
-
-<img src="./assets/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20231227110644.jpg" alt="_20231227110644.jpg" width="50%">
-
-<img src="./assets/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20231227110655.jpg" alt="_20231227110655.jpg" width="50%">
-
 <img src="./assets/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20231227111206.jpg" alt="_20231227111206.jpg" width="50%">
-
-<img src="./assets/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20231227110704.jpg" alt="_20231227110704.jpg" width="50%">
 
 <img src="./assets/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20231227110628.jpg" alt="_20231227110628.jpg" width="50%">
 
@@ -252,12 +260,22 @@ services:
 
 <img src="./assets/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20231227110640.jpg" alt="_20231227110640.jpg" width="50%">
 
+<img src="./assets/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20231227110644.jpg" alt="_20231227110644.jpg" width="50%">
+
+<img src="./assets/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20231227110649.jpg" alt="_20231227110649.jpg" width="50%">
+
+<img src="./assets/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20231227110655.jpg" alt="_20231227110655.jpg" width="50%">
+
+<img src="./assets/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20231227110704.jpg" alt="_20231227110704.jpg" width="50%">
+
+<img src="./assets/owner.jpg" alt="_20231227110704.jpg" width="50%">
+
 ## 问题 & 联系方式
 
 ### QQ
 
-<img src="./assets/QQ.png" alt="qq" width="50%">
+<img src="./assets/QQ.png" alt="qq" width="20%">
 
 ### 微信
 
-<img src="./assets/wechat.png" alt="微信" width="50%">
+<img src="./assets/wechat.png" alt="微信" width="20%">
