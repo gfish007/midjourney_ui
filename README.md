@@ -4,7 +4,7 @@
 
 ## 体验地址
 
-[体验地址](https://demo.gfish.top)
+[体验地址](https://gfish.top)
 
 ## 功能列表
 
@@ -70,8 +70,6 @@ services:
     image: gfishfont/gfish-ui:latest
     environment:
       - VG_BASE_URL={后端接口地址}
-      - VG_DEFAULT_USER={初始账户}
-      - VG_DEFAULT_PASSWORD={初始密码}
     ports:
       - "8081:80"
 
