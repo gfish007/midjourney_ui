@@ -60,7 +60,7 @@
 
 ### 前后端一键部署
 
-#### 方式一：Docker Compose
+#### Docker Compose
 
 ```
 version: '3.8'
@@ -81,6 +81,7 @@ services:
     ports:
       - "7099:7099"
     environment:
+      - TZ=Asia/Shanghai
       - SERVER_PORT=7099
       - SPRING_APPLICATION_NAME=dfish
       - SPRING_PROFILES_ACTIVE=prod
@@ -105,13 +106,7 @@ services:
 
 ### 前端单独部署
 
-#### **方式一：Docker**
-
-```
-docker run -p 8080:80 -e VG_SUB_DOMAIN="{后端地址}" -e VG_DEFAULT_USER="{默认用户}" -e VG_DEFAULT_PASSWORD="{默认密码}" gfishfont/gfish-ui:latest
-```
-
-#### **方式二：Docker Compose**
+#### **Docker Compose**
 
 ```dockerfile
 version: '3.8'
@@ -120,40 +115,15 @@ services:
   gfishUI:
     image: gfishfont/gfish-ui:latest
     environment:
+      - TZ=Asia/Shanghai
       - VG_BASE_URL={后端接口地址}
-      - VG_DEFAULT_USER={初始账户}
-      - VG_DEFAULT_PASSWORD={初始密码}
     ports:
       - "8081:80"
 ```
 
 ### 后端单独部署
 
-#### 方式一：Docker
-
-```
-docker run -d \
---name gfish-api \
--p 7099:7099 \
--e SPRING_PROFILES_ACTIVE=prod \
-# MySql 配置
--e SPRING_DATASOURCE_URL=jdbc:mysql://{数据库地址:端口}/{数据库名}?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai \
--e SPRING_DATASOURCE_USERNAME={账号} \
--e SPRING_DATASOURCE_PASSWORD={密码} \
-# Redis 配置
--e SPRING_REDIS_HOST={redis地址} \
--e SPRING_REDIS_PORT={redis端口} \
--e SPRING_REDIS_DATABASE=0 \
--e SPRING_REDIS_PASSWORD={redis密码} \
-# 邮件配置
-- MAIL_HOST={邮箱HOST}
-- MAIL_PORT={邮箱发信端口}
-- MAIL_USERNAME={用户名}
-- MAIL_PASSWORD={密码}
-gfishauth/auth_free:latest
-```
-
-#### 方式二：Docker Compose
+#### Docker Compose
 
 ```dockerfile
 version: '3'
@@ -170,6 +140,7 @@ services:
       - "7099:7099"
     # 环境变量设置
     environment:
+      - TZ=Asia/Shanghai
       # 服务器端口
       - SERVER_PORT=7099
       # Spring应用名称
