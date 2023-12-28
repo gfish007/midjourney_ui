@@ -4,7 +4,7 @@
 
 ## 体验地址
 
-[体验地址](https://demo.gfish.top) 
+[体验地址](https://demo.gfish.top)
 
 ## 功能列表
 
@@ -212,6 +212,12 @@ services:
 > **管理员账号**：admin
 >
 > **管理员密码**：admin123456
+
+#### Prompt提示词风格数据
+
+[图片数据](https://github.com/gfish007/midjourney-prompt-image) 可以自己上传到OSS，或者直接使用 github 图床。数据在表：`df_robot_prompt `。这里面有个 `rewrite_image_url`字段，如果未配置连接代理的话（`df_dict`表里的`Promtp图片代理`配置项），将使用 rewrite_image_url 的连接。
+
+[github图床地址测试](https://gfish007.github.io/midjourney-prompt-image/mj/dongman/fp15ph1bjlmaz2g9.png)
 
 #### 自定义菜单
 
