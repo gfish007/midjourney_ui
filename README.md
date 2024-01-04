@@ -1,6 +1,8 @@
-# gfish
+# midjourney旅行者
 
-免费 Midjourney 代理 + UI 前后端一键部署
+地表最佳！一键部署属于你自己的 Midjourney 前后端服务。精细化的图片查看以及管理，告别Discord 的困难找图。
+
+![huatu2.png](./assets/huatu2.png)
 
 ## 体验地址
 
@@ -10,17 +12,19 @@
 
 #### midjourney 功能
 
-- [X]  NIJI机器人/Midjourney机器人
-- [X]  Imagine
-- [X]  Blend
-- [X]  Describe & Describe后的自动垫图
-- [X]  ZOOM/Custom zoom
-- [X]  UPSCALE/UPSCALE 2X、UPSCALE 4X
-- [X]  VARIATION
-- [X]  REMIX
-- [X]  PAN
+- [X]  `NIJI`机器人/`Midjourney`机器人
+- [X]  `Imagine`
+- [X]  `Blend`
+- [X]  `Describe`& 自动垫图
+- [X]  `U/V` 操作
+- [X]  `ZOOM` & `Custom zoom`
+- [X]  `UPSCALE `& `UPSCALE 2X` & `UPSCALE 4X`
+- [X]  `VARIATION` 系列操作
+- [X]  `REMIX`
+- [X]  `PAN` 系列操作
 - [X]  局部重绘
-- [X]  Turbo/Fast/Relax
+- [X]  `Turbo` & `Fast` & `Relax`
+- [X]  V6操作 & `Upscale (Subtle)` & `Upscale (Creative)`
 - [X]  ... 作图功能全集成，自己体验把！
 
 #### 扩展功能
@@ -31,26 +35,29 @@
 - [X]  内嵌翻译
 - [X]  内嵌AI生成提示词
 - [X]  内嵌3000+提示词
-- [X]  提供工作空间管理图片
+- [X]  工作空间管理
 - [X]  图片打标签
 - [X]  收藏分类
 - [X]  Discord 授权码共享账号
 - [X]  Discord 多账号管理 & 账号组管理 & Chatgpt账号管理
 - [X]  基于非公平算法分配批量用户任务，特定类型任务优先
-- [X]  无任务处理，自动关闭socket，保护账号
+- [X]  保护账号机制
+- [X]  系统相关参数配置页面集成
+- [X]  部分页面UI升级
 - [X]  ... 各种其他小功能，写的累，自己看吧 =_=!
 
-#### 待开发
+#### 1月版本待开发
 
-* [ ]  Midjourney画廊引入
-* [ ]  Midjourney参数配置UI
-* [ ]  系统相关参数配置页面
+* [ ]  Midjourney画廊引入（开发中）
+* [X]  参数配置UI（已完成）
+* [ ]  UI优化（进行中）
+* [ ]  问题修复（进行中）
 * [ ]  专注模式
 * [ ]  收藏分享
 
 ## 项目部署
 
-### 前置环境准备
+### 1.前置环境准备
 
 * [ ]  一个"墙外"VPS
 * [ ]  Pandora-next搭建（免费的Chatgpt逆向，[项目地址](https://github.com/pandora-next/deploy))）
@@ -58,9 +65,9 @@
 * [ ]  Mysql 8.0
 * [ ]  根目录初始化sql执行
 
-### 前后端一键部署
+### 2.Docker服务部署
 
-#### Docker Compose
+#### 方式一：前后端一键部署(Docker Compose)
 
 ```
 version: '3.8'
@@ -70,8 +77,7 @@ services:
     image: gfishfont/gfish-ui:latest
     environment:
       - VG_BASE_URL={后端接口地址}
-      - VG_DEFAULT_USER={初始账户}
-      - VG_DEFAULT_PASSWORD={初始密码}
+      - VG_APP_TITLE={网站名称}
     ports:
       - "8081:80"
 
@@ -84,6 +90,7 @@ services:
       - TZ=Asia/Shanghai
       - SERVER_PORT=7099
       - SPRING_APPLICATION_NAME=dfish
+      - DISCORD_PROXY_SWITCH_FLAG=false
       - SPRING_PROFILES_ACTIVE=prod
       - SPRING_DATASOURCE_URL=jdbc:mysql://{数据库地址:端口}/{数据库名}?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
       - SPRING_DATASOURCE_USERNAME={账号}
@@ -92,10 +99,6 @@ services:
       - SPRING_REDIS_PORT={redis端口}
       - SPRING_REDIS_DATABASE=0
       - SPRING_REDIS_PASSWORD={redis密码}
-      - MAIL_HOST={邮箱HOST}
-      - MAIL_PORT={发信PORT}
-      - MAIL_USERNAME={账号}
-      - MAIL_PASSWORD={密码}
       - RUN_MODE=single
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:7099/actuator/health"]
@@ -104,9 +107,9 @@ services:
       retries: 3
 ```
 
-### 前端单独部署
+#### 方式二：分离部署(Docker Compose)
 
-#### **Docker Compose**
+##### 前端单独部署(Docker Compose)
 
 ```dockerfile
 version: '3.8'
@@ -121,9 +124,7 @@ services:
       - "8081:80"
 ```
 
-### 后端单独部署
-
-#### Docker Compose
+##### 后端单独部署(Docker Compose）
 
 ```dockerfile
 version: '3'
@@ -147,7 +148,8 @@ services:
       - SPRING_APPLICATION_NAME=dfish
       # Spring活动配置
       - SPRING_PROFILES_ACTIVE=prod
-
+      # 关闭本地代理
+      - DISCORD_PROXY_SWITCH_FLAG=false
       # MySQL 配置
       -e SPRING_DATASOURCE_URL=jdbc:mysql://{{数据库地址:端口}}/{数据库名}?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
       -e SPRING_DATASOURCE_USERNAME={账号}
@@ -158,12 +160,6 @@ services:
       -e SPRING_REDIS_PORT={redis端口}
       -e SPRING_REDIS_DATABASE=0
       -e SPRING_REDIS_PASSWORD={redis密码}
-
-      # 邮件配置
-      - MAIL_HOST={邮箱HOST}
-      - MAIL_PORT={发信PORT}
-      - MAIL_USERNAME={账号}
-      - MAIL_PASSWORD={密码}
 
       # 运行模式：single
       - RUN_MODE=single
@@ -176,7 +172,11 @@ services:
       retries: 3
 ```
 
-### 基础配置相关
+### 3.Nginx配置反向代理
+
+> 这个没啥好说的，晚上一搜就出来了。
+
+### 4.基础配置相关
 
 #### 默认账号配置
 
@@ -196,11 +196,11 @@ services:
 
 #### 扩展功能配置
 
-当前未开发页面，请至 `Mysql` 的 `df_dict` 表修改相关值
+管理员账号登录配置
 
-<img src="./assets/config.png" alt="数据库常量配置" width="100%">
+![setting2.png](./assets/setting2.png)
 
-## 免费版本限制说明（暂定限制如下，具体数值待定）
+## 免费版本限制说明（暂定限制如下，具体数值待定，默认都是1）
 
 - 只开放 single 模式（单机直跑）
 - Discord 账号个数限制
@@ -214,6 +214,10 @@ services:
 
 ### PC端：
 
+![huatu1.png](./assets/huatu1.png)
+
+![huatu2.png](./assets/1704336343890-huatu2.png)
+
 ![_20231227100137.png](./assets/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20231227100137.png)
 
 ![_20231227100147.png](./assets/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20231227100147.png)
@@ -223,6 +227,8 @@ services:
 ![_20231227101015.png](./assets/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20231227101015.png)
 
 ![_20231227101620.png](./assets/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20231227101620.png)
+
+![shoucang2.png](./assets/shoucang2.png)
 
 ![_20231227100214.png](./assets/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20231227100214.png)
 
