@@ -6,7 +6,7 @@
 
 ## 体验地址
 
-[体验地址](https://midjourneyers.com)
+[体验地址](https://demo.gfish.top)
 
 ## 功能列表
 
@@ -178,11 +178,11 @@ services:
 
 ### 4.基础配置相关
 
-#### 默认账号配置 ( `df_user` 表随便改)
+#### 默认账号配置
 
-> **管理员账号**：admin@admin.com
+> **管理员账号**：admin
 >
-> **管理员密码**：aa123456
+> **管理员密码**：admin123456
 
 #### Prompt提示词风格数据
 
